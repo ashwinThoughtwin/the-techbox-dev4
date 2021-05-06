@@ -157,7 +157,7 @@ class CreateCategoryView(SuccessMessageMixin,CreateView):
     form_class = CategoryForm
     model = Category
     template_name = "dashboard/create_category.html"
-    success_url ="/dashboard/view/category/"
+    success_url ="/view/category/"
     success_message = "Category was Created successfully"
 
 
@@ -177,7 +177,7 @@ class UpdateCategoryView(SuccessMessageMixin,UpdateView):
     form_class = CategoryForm
     model = Category
     template_name = "dashboard/update_category.html"
-    success_url = "/dashboard/view/category/"
+    success_url = "/view/category/"
     success_message = "Category was Update successfully"
 
 
@@ -192,7 +192,7 @@ def detail_category(request, id):
 @method_decorator(login_required, name='dispatch')
 class CategoryDeleteView(SuccessMessageMixin,DeleteView):
     model = Category
-    success_url = "/dashboard/view/category/"
+    success_url = "/view/category/"
     success_message = "Category was Delete successfully"
     
     def get(self, request, *args, **kwargs):
@@ -209,7 +209,7 @@ class CreateToolView(SuccessMessageMixin,CreateView):
     form_class = ToolForm
     model = Tool
     template_name = "dashboard/tool.html"
-    success_url ="/dashboard/view/tool/"
+    success_url ="/view/tool/"
     success_message = "Tool was Created successfully"
 
 
@@ -230,7 +230,7 @@ class UpdateToolView(SuccessMessageMixin,UpdateView):
     form_class = ToolForm
     model = Tool
     template_name = "dashboard/update_tool.html"
-    success_url = "/dashboard/view/tool/"
+    success_url = "/view/tool/"
     success_message = "Tool was Update successfully"
     
 
@@ -246,7 +246,7 @@ def detail_tool(request, id):
 @method_decorator(login_required, name='dispatch')
 class ToolDeleteView(SuccessMessageMixin,DeleteView):
     model = Tool
-    success_url = "/dashboard/view/tool/"
+    success_url = "/view/tool/"
     success_message = "Tool was Delete successfully"
     
     def get(self, request, *args, **kwargs):
@@ -276,7 +276,7 @@ class CreateEmployeeView(SuccessMessageMixin,CreateView):
     form_class = EmployeeForm
     model = Employee
     template_name = "dashboard/create_employee.html"
-    success_url ="/dashboard/view/employee/"
+    success_url ="/view/employee/"
     success_message = "Employee was Created successfully"
 
 
@@ -297,7 +297,7 @@ class UpdateEmployeeView(SuccessMessageMixin,UpdateView):
     form_class = EmployeeForm
     model = Employee
     template_name = "dashboard/update_employee.html"
-    success_url = "/dashboard/view/employee/"
+    success_url = "/view/employee/"
     success_message = "Employee was Update successfully"
     
 
@@ -313,7 +313,7 @@ def detail_employee(request, id):
 @method_decorator(login_required, name='dispatch')
 class EmployeeDeleteView(SuccessMessageMixin,DeleteView):
     model = Employee
-    success_url = "/dashboard/view/employee/"
+    success_url = "/view/employee/"
     success_message = "Employee was Delete successfully"
 
     
@@ -330,7 +330,7 @@ class CreateDesignationView(SuccessMessageMixin,CreateView):
     form_class = DesignationForm
     model = Designation
     template_name = "dashboard/create_designation.html"
-    success_url ="/dashboard/view/designation/"
+    success_url ="/view/designation/"
     success_message = "Designation was Created successfully"
 
 
@@ -351,7 +351,7 @@ class UpdateDesignationView(SuccessMessageMixin,UpdateView):
     form_class = DesignationForm
     model = Designation
     template_name = "dashboard/update_designation.html"
-    success_url = "/dashboard/view/designation/"
+    success_url = "/view/designation/"
     success_message = "Designation was Update successfully"
       
 
@@ -368,7 +368,7 @@ def detail_designation(request, id):
 @method_decorator(login_required, name='dispatch')
 class DesignationDeleteView(SuccessMessageMixin,DeleteView):
     model = Designation
-    success_url = "/dashboard/view/designation/"
+    success_url = "/view/designation/"
     success_message = "Designation was Delete successfully"
 
     
@@ -423,7 +423,7 @@ class BorrowAssignToolView(View):
             recipient_list = [email, ]
             send_mail( subject, message, email_from, recipient_list )
 
-        return HttpResponseRedirect("/dashboard/view/assign/tool")
+        return HttpResponseRedirect("/view/assign/tool")
 
 
 
@@ -448,7 +448,7 @@ def detail_assigntool(request, id):
 @method_decorator(login_required, name='dispatch')
 class AssignToolDeleteView(SuccessMessageMixin,DeleteView):
     model = BorrowTool
-    success_url = "/dashboard/view/assign/tool"
+    success_url = "/view/assign/tool"
     success_message = "Borrow Tool was Delete successfully"
 
     

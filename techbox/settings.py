@@ -71,7 +71,7 @@ INSTALLED_APPS = [
     'celery',
     'rest_framework',
     'rest_framework.authtoken',
-    'django_celery_results',   
+    
             
 ]
 

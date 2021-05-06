@@ -1,0 +1,78 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+{% include "includes/content.html" %}
+<style>
+.form-control {
+color: black;   
+}  
+</style>
+<div class="container-fluid mt--7" style="padding-top:40px"> 
+  div class="row">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header bg-transparent">
+        <h3 class="mb-0">Add Tool</h3>
+      </div>
+      <div class="card-body">
+       <div class="container">
+        <form name="myformcont" class="my-2" action="{% url 'create/tool' %}" method="POST">
+          {% csrf_token %}
+
+          <!-- <h2 class="text-center">LIC Form</h2> -->
+          <div class="row jumbotron">
+
+            <div class="col-sm-6 form-group" >
+            <label for="name">Name :</label><span class="required"></span>
+            <input type="text" class="form-control" name="text" id="name-f" placeholder="Email" value="{{tool.name}}" readonly>
+          </div>     
+
+
+          <div class="col-sm-6 form-group" >
+            <label for="name">Category :</label><span class="required"></span>
+            <input type="text" class="form-control" name="text" id="name-f" placeholder="Email" value="{{tool.category}}" readonly>
+          </div>  
+
+            
+           <div class="col-sm-6 form-group" >
+            <label for="name">Model Number :</label><span class="required"></span>
+            <input type="text" class="form-control" name="text" id="name-f" placeholder="Email" value="{{tool.model_number}}" readonly>
+          </div> 
+
+          
+
+           <div class="col-sm-12 form-group mb-0">
+           <a class="btn btn-sm btn-primary"  style="color:white; margin-left:90%"  href="/dashboard/view/tool/"><span class="glyphicon glyphicon-pencil" >Back</span></a>
+         </div> 
+
+         </div>
+       </form>
+     </div> 
+   </div>
+ </div>  
+</div>
+</div>
+
+
+
+<div class="container-fluid mt--6" style="padding-top:60px">
+
+  {% include "includes/footer.html" %}
+
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+<script src="/static/assets/vendor/chart.js/dist/Chart.min.js"></script>
+<script src="/static/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+
+{% endblock javascripts %}

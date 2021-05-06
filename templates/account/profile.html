@@ -1,0 +1,206 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Profile {% endblock title %}
+
+{% block content %}
+
+<div class="header pb-6 d-flex align-items-center" 
+     style="min-height: 500px; background-image: url(/static/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-default opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white"> 
+          Hello {{ request.user.username }}
+        </h1>
+        <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+        <a href="#!" class="btn btn-neutral">Edit profile</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2">
+      <div class="card card-profile">
+        <img src="/static/assets/img/theme/img-1-1000x600.jpg" alt="Image placeholder" class="card-img-top">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 order-lg-2">
+           <div class="card-profile-image">
+            <!-- <img src="{{profile_pic}}" style="height:150px;width:150px;border-radius:50%">  --> 
+            {% if data.profile_pic %}
+            <img src="/media/{{data.profile_pic}}" style="height:150px;width:150px;border-radius:50%">
+            {% else %}
+            <img src="/static/ishwar.jpg" style="height:150px;width:150px;border-radius:50%">
+            {% endif %}                    
+          </div> 
+        </div>
+        </div>
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="d-flex justify-content-between">
+            <a href="#" class="btn btn-sm btn-info  mr-4 ">Connect</a>
+            <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+          </div>
+        </div>
+        <div class="card-body pt-0">
+          <div class="row">
+            <div class="col">
+              <div class="card-profile-stats d-flex justify-content-center">
+                <div>
+                  <span class="heading">22</span>
+                  <span class="description">Friends</span>
+                </div>
+                <div>
+                  <span class="heading">10</span>
+                  <span class="description">Photos</span>
+                </div>
+                <div>
+                  <span class="heading">89</span>
+                  <span class="description">Comments</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <h5 class="h3">
+              {{ request.user.username }}
+            </h5>
+            <div class="h5 font-weight-300">
+              {{ request.user.email }}
+            </div>
+            <div class="h5 mt-4">
+              <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+            </div>
+            <div>
+              <i class="ni education_hat mr-2"></i>University of Computer Science
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8 order-xl-1">
+      <div class="card">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Edit profile </h3>
+            </div>
+            <div class="col-4 text-right">
+              <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+      <form name="myformcont" class="my-2" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if status %}
+        <div class="alert alert-primary">{{status}}</div>
+        {% endif %}    
+        <h6 class="heading-small text-muted mb-4">User information</h6>
+        <div class="pl-lg-4">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-username">First Name</label>
+                <input type="text" id="input-username" name="fname" class="form-control form-control-alternative" placeholder="Enter First Name" 
+                value="{{user.first_name}}">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-email">Last Name</label>
+                <input type="text" id="input-email" name="lname" class="form-control form-control-alternative" 
+                placeholder="Enter Last Name" value="{{user.last_name}}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-first-name">Email</label>
+                <input type="email" name="email" id="input-first-name" class="form-control form-control-alternative" placeholder="Enter Name" value="{{user.email}}">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-last-name">Profile Picture</label>
+                <!-- <input type="file" name="image"  class="form-control form-control-alternative" > -->
+                <input type="file" class="form-control" name="image">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label class="form-control-label" for="input-last-name">Contact Number</label>
+                <input type="text" name="contact" id="input-last-name" class="form-control form-control-alternative"  placeholder="Enter Contact Number" value="{{data.contact_number}}" required="" >
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label>Age (in years)</label>
+              <input type="number" class="form-control" name="age" placeholder="Enter Age" min="15" max="99" value="{{data.age}}">
+            </div>
+            <div class="col-md-6">
+              <label>City</label>
+              <input type="text" class="form-control" name="city" placeholder="Enter City" value="{{data.city}}">
+            </div>
+            <div class="col-md-6">
+              <label>Gender</label>
+              <select name="gender"  class="form-control">
+                <option value="Male">Male</option>
+
+                {% if data.gender == "Female" %}
+                <option value="Female" selected>Female</option>
+                {% else %}
+                <option value="Female">Female</option>
+                {% endif %}
+
+                {% if data.gender == "Others" %}
+                <option value="Others" selected>Others</option>
+                {% else %}
+                <option value="Others">Others</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <!-- Address -->
+        <h6 class="heading-small text-muted mb-4">Contact information</h6>
+        <div class="pl-lg-4">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-control-label" for="input-address">Address</label>
+                <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" name="occ" type="text" value="{{data.occupation}}">
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <!-- Description -->
+        <h6 class="heading-small text-muted mb-4">About me</h6>
+        <div class="pl-lg-4">
+          <div class="form-group">
+            <label>About Me</label>
+            <textarea name="about" placeholder="Write About Yourself" class="form-control">{{data.about}}</textarea>
+          </div>
+        </div>
+        <div class="col-12 text-right">
+         <button class="btn btn-sm btn-primary">Submit</button>
+       </div>
+     </form>
+   </div>
+      </div>
+    </div>
+  </div>
+
+  {% include "includes/footer.html" %}
+
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

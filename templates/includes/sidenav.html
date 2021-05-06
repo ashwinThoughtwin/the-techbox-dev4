@@ -1,0 +1,187 @@
+<style>
+  
+.dropdown-menu {
+  padding-left: 14px;
+  box-shadow: none;
+   
+}
+</style>
+
+
+<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <div class="scrollbar-inner">
+    <!-- Brand -->
+    <div class="sidenav-header  align-items-center">
+      <a class="navbar-brand" href="/" style="background-color: #5e72e4">
+        <img src="/static/assets/img/brand/bluee.png" class="navbar-brand-img" alt="Argon Design - Jinja Template Logo.">
+      </a>
+    </div>
+    <div class="navbar-inner">
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <!-- Nav items -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link {% if 'index' in segment %} active {% endif %}" href="/dashboard">
+              <i class="ni ni-tv-2 text-primary"></i>
+              <span class="nav-link-text">Dashboard</span>
+            </a>
+          </li>
+          
+          <!-- <li class="nav-item">
+            <a class="nav-link {% if 'map' in segment %} active {% endif %}" href="/map.html">
+              <i class="ni ni-pin-3 text-primary"></i>
+              <span class="nav-link-text">Google</span>
+            </a>
+          </li> -->
+                     
+        </ul>
+        <!-- Divider -->
+        <hr class="my-3">
+        <!-- Heading -->
+        <h6 class="navbar-heading p-0 text-muted">
+          <span class="docs-normal">LIST OF</span>
+        </h6>
+        <!-- Navigation -->
+        <ul class="navbar-nav mb-md-3">
+
+          <li class="nav-item">
+          <div class="dropdown">
+          <a class="nav-link " data-toggle="dropdown" href="#">
+           <i class="ni ni-books text-purple" ></i>Category  &ensp;  <i class="fas fa-caret-down"></i></a>   
+                
+          <div class="dropdown-menu">
+            
+           <!--  <a class="nav-link " href="">
+              <i class="ni ni-ungroup text-blue"></i>
+            </a> -->
+
+            <a class="nav-link " href="{% url 'category'  %}">
+              <i class="ni ni-ungroup text-blue"></i>Add Category
+            </a>
+
+            <a class="nav-link " href="{% url 'view/category' %}">
+              <i class="ni ni-bullet-list-67 text-info"></i>View Category
+            </a>
+            
+            </div>
+            </div>
+          </li>
+        
+          
+          <li class="nav-item">
+          <div class="dropdown">
+          <a class="nav-link " data-toggle="dropdown" href="#">
+           <i class="ni ni-paper-diploma text-info" ></i>Add Tool  &ensp;  <i class="fas fa-caret-down"></i></a>   
+                
+          <div class="dropdown-menu">
+            
+            <a class="nav-link " href="{% url 'create/tool' %}">
+              <i class="ni ni-compass-04 text-blue"></i>Add Tool
+            </a>
+
+            <a class="nav-link " href="{% url 'view/tool' %}">
+              <i class="ni ni-chart-pie-35 text-blue"></i>View Tool
+            </a>
+
+            
+            </div>
+            </div>
+          </li>
+
+
+          
+          <li class="nav-item">
+          <div class="dropdown">
+          <a class="nav-link " data-toggle="dropdown" href="#">
+           <i class="ni ni-bullet-list-67 text-default" ></i>Employee  &ensp;  <i class="fas fa-caret-down"></i></a>   
+                
+          <div class="dropdown-menu">
+            
+            <a class="nav-link " href="{% url 'create/employee' %}">
+              <i class="ni ni-compass-04 text-blue"></i>Add Employee
+            </a>
+
+            <a class="nav-link " href="{% url 'view/employee' %}">
+              <i class="ni ni-chart-pie-35 text-blue"></i>View Employee
+            </a>
+
+            
+            </div>
+            </div>
+          </li>
+
+           <li class="nav-item">
+          <div class="dropdown">
+          <a class="nav-link " data-toggle="dropdown" href="#">
+           <i class="ni ni-credit-card text-green" ></i>Designation  &ensp;  <i class="fas fa-caret-down"></i></a>   
+                
+          <div class="dropdown-menu">
+            
+           <!--  <a class="nav-link " href="">
+              <i class="ni ni-ungroup text-blue"></i>
+            </a> -->
+
+            <a class="nav-link " href="{% url 'create/designation'  %}">
+              <i class="ni ni-ungroup text-blue"></i>Add Designation
+            </a>
+
+            <a class="nav-link " href="{% url 'view/designation' %}">
+              <i class="ni ni-bullet-list-67 text-info"></i>View Designation
+            </a>
+            
+            </div>
+            </div>
+          </li>
+
+           <li class="nav-item">
+          <div class="dropdown">
+          <a class="nav-link " data-toggle="dropdown" href="#">
+           <i class="ni ni-collection text-orange"></i>Borrow Tool  &ensp;  <i class="fas fa-caret-down"></i></a>   
+                
+          <div class="dropdown-menu">
+            
+            <a class="nav-link " href="{% url 'borrow/tool' %}">
+              <i class="ni ni-compass-04 text-blue"></i>Assign Tool
+            </a>
+
+            <a class="nav-link " href="{% url 'view/assign/tool' %}">
+              <i class="ni ni-chart-pie-35 text-blue"></i>View Assign-Tool
+            </a>
+
+            
+            </div>
+            </div>
+          </li>
+
+
+          
+        </ul>
+         <!-- Divider -->
+        <hr class="my-3">
+        <!-- Heading -->
+        <h6 class="navbar-heading p-0 text-muted">
+          <span class="docs-normal">User</span>
+        </h6>
+        <!-- Navigation -->
+        <ul class="navbar-nav mb-md-3">
+
+         <li class="nav-item">
+            <a class="nav-link {% if 'profile' in segment %} active {% endif %}" href="{% url 'profile' %}">
+              <i class="ni ni-single-02 text-yellow"></i>
+              <span class="nav-link-text">Profile</span>
+            </a>
+          </li>
+                    
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#logoutModal" >
+              <i class="ni ni-user-run text-red"></i> 
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>          
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

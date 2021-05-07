@@ -15,14 +15,7 @@ from django.views.decorators.cache import cache_page
 urlpatterns = [
 	
 	path('dashboard/',views.IndexView.as_view(),name='index'),
-	
-	# path('test/',views.HomePageView.as_view(), name='test'),
-	# path('config/', views.stripe_config),  # new
-	# path('create-checkout-session/', views.create_checkout_session), # new
-	# path('success/', views.SuccessView.as_view()), # new
- 	#path('cancelled/', views.CancelledView.as_view()), # new
-	path('charge/', views.charge, name='charge'), # new
-    path('test/', views.HomePageView.as_view(), name='test'),  
+		 
 
 					# ------------**--------------#
 	
@@ -87,9 +80,22 @@ urlpatterns = [
     path('tooldetail/api/<int:pk>/', api_views.ToolDetailApi.as_view(), name="tooldetail/api"),
     path('borrow/api/', api_views.BorrowToolApi.as_view(), name="borrow/api"),
     path('borrow/tooldetail/api/<int:pk>/', api_views.BorrowToolDetailApi.as_view(), name="borrow/tooldetail/api"),
-    #path('api/auth/', include('rest_framework.urls', namespace='rest_framework'))
     path('api/designation/create',api_views.DesignationCreateApi.as_view(),name='api_designation_create'),
     path('api/employee/create',api_views.EmployeeCreateApi.as_view(),name='api_employee_create'),
     path('api/employee/list',api_views.EmployeeListApi.as_view(),name='api_employee_list'),
+
+
+    				# ------------**--------------#
+							# payment urls #
+
+
+	path('charge/', views.charge, name='charge'), # new
+    path('test/', views.HomePageView.as_view(), name='test'),
+    # path('test/',views.HomePageView.as_view(), name='test'),
+	# path('config/', views.stripe_config),  # new
+	# path('create-checkout-session/', views.create_checkout_session), # new
+	# path('success/', views.SuccessView.as_view()), # new
+ 	# path('cancelled/', views.CancelledView.as_view()), # new 
+
 ]	
 

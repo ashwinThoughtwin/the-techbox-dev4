@@ -36,58 +36,11 @@ from django.conf import settings # new
 
 ####################################################################################################################
 
-# class HomePageView(TemplateView):
-#     template_name = 'dashboard/test.html'
+stripe.api_key = settings.STRIPE_SECRET_KEY # new
+
 
 class ChargeView(TemplateView):
     template_name = 'dashboard/charge.html'
-
-
-
-# class SuccessView(TemplateView):
-#     template_name = 'dashboard/success.html'
-
-
-# class CancelledView(TemplateView):
-#     template_name = 'dashboard/cancelled.html'
-
-
-# # new
-# @csrf_exempt
-# def stripe_config(request):
-#     if request.method == 'GET':
-#         stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
-#         return JsonResponse(stripe_config, safe=False)
-
-
-# @csrf_exempt
-# def create_checkout_session(request):
-#     if request.method == 'GET':
-#         domain_url = 'http://localhost:8000/'
-#         stripe.api_key = settings.STRIPE_SECRET_KEY
-#         try:
-
-#             checkout_session = stripe.checkout.Session.create(
-#                 success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
-#                 cancel_url=domain_url + 'cancelled/',
-#                 payment_method_types=['card'],
-#                 mode='payment',
-#                 line_items=[
-#                     {
-#                         'name': 'T-shirt',
-#                         'quantity': 1,
-#                         'currency': 'inr',
-#                         'amount': '25000',
-#                     }
-#                 ]
-#             )
-#             return JsonResponse({'sessionId': checkout_session['id']})
-#         except Exception as e:
-#             return JsonResponse({'error': str(e)})
-
-
-
-stripe.api_key = settings.STRIPE_SECRET_KEY # new
 
 
 class HomePageView(TemplateView):
@@ -110,24 +63,6 @@ def charge(request): # new
         return render(request, 'dashboard/charge.html')
 
 
-# def charge(request):
-#     if request.method == 'POST':
-#         # import pdb; pdb.set_trace()
-#         amount = int(request.POST['amount'])
-#         name = request.POST['uname']
-#         email = request.POST['email']
-#         customer = stripe.Customer.create(
-#             email=email,
-#             name=name,
-#             source=request.POST['stripeToken'],
-#             )
-#         charge = stripe.Charge.create(
-#             customer=customer,
-#             amount=amount*100,
-#             currency='inr',
-#             description="pay amount"
-#         )
-#         return redirect(reverse('success'))
 
 
 ############################################################################################################

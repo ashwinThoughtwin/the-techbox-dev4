@@ -8,27 +8,39 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
 from .serializers import UserSerializer
-from rest_framework import generics
+from rest_framework.generics import CreateAPIView,ListAPIView
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated  # <-- Here
 
 
+###########################################################################################################################
 
-class EmployeeCreateApi(generics.CreateAPIView):
+class EmployeeCreateApi(CreateAPIView):
     queryset = Employee.objects.all()
     serializer_class = serializers.EmployeeSerializer
 
 
-class EmployeeListApi(generics.ListAPIView):
+###########################################################################################################################
+
+class EmployeeListApi(ListAPIView):
     queryset = Employee.objects.all()
     serializer_class = serializers.EmployeeSerializer
 
 
-class DesignationCreateApi(generics.CreateAPIView):
+###########################################################################################################################
+
+
+class DesignationCreateApi(CreateAPIView):
     queryset = Designation.objects.all()
     serializer_class = serializers.DesignationSerializer
 
 
 
+###########################################################################################################################
+
 class ToolListApi(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, format=None):
         tools = Tool.objects.all()
         serializer = ToolSerializers(tools, many=True)
@@ -41,6 +53,8 @@ class ToolListApi(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+###########################################################################################################################
 
 
 class ToolDetailApi(APIView):
@@ -70,6 +84,8 @@ class ToolDetailApi(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+###########################################################################################################################
+
 class BorrowToolApi(APIView):
 
     def get(self, request):
@@ -83,6 +99,10 @@ class BorrowToolApi(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+###########################################################################################################################
 
 
 class BorrowToolDetailApi(APIView):
@@ -112,6 +132,8 @@ class BorrowToolDetailApi(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+###########################################################################################################################
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -119,3 +141,4 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+###########################################################################################################################
